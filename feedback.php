@@ -68,16 +68,7 @@
 	
 		<div class="clear"><br /></div>
 		
-	<?php
-		if(isset($_POST["send"])){
-			$to="wlegoofkool@mail.ru";
-			$subject=htmlspecialchars($_POST["subject"]);
-			$mail=htmlspecialchars($_POST["mail"]);
-			$name=htmlspecialchars($_POST["name"]);
-			$message=htmlspecialchars($_POST["message"]);
-			mail($to,$subject,$mail,$name,$message);
-		}
-	?>
+
 		
 		<div id="wrapper">
 			<div id="articles">
@@ -100,6 +91,17 @@
 		</div>
 		
 	</div>
+	
+	<?php
+		if(isset($_POST["send"])){
+			$to="wlegoofkool@gmail.com";
+			$subject=htmlspecialchars($_POST["subject"]);
+			$mail=htmlspecialchars($_POST["mail"]);
+			$name=htmlspecialchars($_POST["name"]);
+			$message=htmlspecialchars($_POST["message"]); 
+			mail($to,$subject,$mail,$name,$message);
+		}
+	?>	
 	
 	<div id="myModalBox" class="modal fade" data-backdrop="false">
 			<div class="modal-dialog">

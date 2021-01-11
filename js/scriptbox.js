@@ -178,13 +178,13 @@ function post_query( url, name, data ) {
 		str += '&' + v + '=' + $('#' + v).val();
 	} );
 
-	
+	/* alert( str); */
 	$.ajax(
 
 	{
 		url : url,
 		type: 'POST',
-		data: name + '_f=1' + str,
+		data: name /* + '_f=1' */ + str,
 		cache: false,
 		success:function( result ) {
 			/* alert( result); */
@@ -204,7 +204,7 @@ function post_query( url, name, data ) {
 /* изменения иконок при валидации данных формы */
 
 $('.reg').on('click',function valid_form(){
-	alert('1');
+	/* alert('1'); */
 	$('form .glyphicon-remove').remove();
 	if ($('#lastName').val()==""){$('div.form-group').eq(1).addClass('has-error has-feedback');
 		$('#lastName').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}

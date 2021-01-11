@@ -137,7 +137,7 @@
 <br />
 <div class="form-group">
     <div class="col-xs-offset-3 col-xs-9">
-	<button onclick="post_query('/new1/gform.php', 'reg', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')"  class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
+	<button onclick="post_query('gform.php', 'reg', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')"  class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
 	<button class="reg">0</button>
 	</div>
 </div>	
