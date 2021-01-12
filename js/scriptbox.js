@@ -184,7 +184,7 @@ function post_query( url, name, data ) {
 	{
 		url : url,
 		type: 'POST',
-		data: name /* + '_f=1' */ + str,
+		data: name + '_f=1' + str,
 		cache: false,
 		success:function( result ) {
 			/* alert( result); */

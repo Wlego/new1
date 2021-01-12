@@ -3,7 +3,7 @@
 
 $CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
 session_start();
-if ( $CONNECT ) echo('MySQL error');
+if (! $CONNECT ) echo('MySQL error');
 
 /* mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "dfgdgdf", "fgsfsgs", "dfgdfg", "sfgfdgdfg", "fdgdfsg", "3211312312", "231321321312", CURRENT_TIMESTAMP)'); */
 function go( $url ) {
