@@ -1,7 +1,7 @@
 <?
 /* echo 'ok'; */
 
-$CONNECT = mysqli_connect('localhost', 'id15884779_wlego', 'Maza123faka@', 'id15884779_new1'); 
+$CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
 session_start();
 if ( $CONNECT ) echo('MySQL error');
 
