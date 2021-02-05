@@ -5,7 +5,7 @@
 		
 		<div id="wrapper">
 			<div id="articles">
-				<form action="/new1/mail.php" method="POST"> <!-- class="form" -->
+				<form  action="mail.php" method="post"> <!-- class="form" -->
 				
 					
 						<label class="control-label">Тема</label>				

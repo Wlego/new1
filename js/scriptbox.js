@@ -192,6 +192,7 @@ function post_query( url, name, data ) {
 			var obj = result;
 			
 			if (obj.indexOf('#')!=-1) $(obj).modal('show');
+			else if (obj.indexOf('код введен неверно')!=-1) {alert( obj ); $('#myModalBoxCod').modal('show');}
 			else if (obj.indexOf('.php')!=-1) window.location.href=obj;
 			else alert( obj );
 	}
@@ -200,6 +201,8 @@ function post_query( url, name, data ) {
 	);
 
 }
+
+
 
 /* изменения иконок при валидации данных формы */
 
@@ -214,6 +217,9 @@ $('.reg').on('click',function valid_form(){
 		
 	if ($('#fatherName').val()==""){$('div.form-group').eq(3).addClass('has-error has-feedback');
 		$('#fatherName').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
+		
+	if ($('#inputPassword').val()!==$('#confirmPassword').val()){$('div.form-group').eq(6).addClass('has-error has-feedback');
+		$('#confirmPassword').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}	
 	
 	if ($('#phoneNumber').val()==""){$('div.form-group').eq(7).addClass('has-error has-feedback');
 		$('#phoneNumber').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
@@ -222,13 +228,55 @@ $('.reg').on('click',function valid_form(){
 		$('#postalAddress').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
 		
 	
+	
 	if ($('#lastName').val()!=""){$('div.form-group').eq(1).removeClass('has-error has-feedback');}
 	if ($('#firstName').val()!=""){$('div.form-group').eq(2).removeClass('has-error has-feedback');}
 	if ($('#fatherName').val()!=""){$('div.form-group').eq(3).removeClass('has-error has-feedback');}
+	if ($('#inputPassword').val() == $('#confirmPassword').val()){$('div.form-group').eq(6).removeClass('has-error has-feedback');}
 	if ($('#phoneNumber').val()!=""){$('div.form-group').eq(7).removeClass('has-error has-feedback');}
 	if ($('#postalAddress').val()!=""){$('div.form-group').eq(8).removeClass('has-error has-feedback');}
+	
 });
 
+$(".next").click( function (){$(".modal").modal("hide");//закрыть все окна
+   $("#myModalBoxR").modal('show');//открыть нужное
+});
+
+
+
+//const myForm = $("#myForm");
+
+////const code = myForm.find("#code");
+//const submit = myForm.find("#send");
+////const check = myForm.find("#check");
+////var generatedCode = Math.floor(Math.random() * 9999).toString();
+////
+////while (generatedCode.length < 4) {
+////  generatedCode = '0' + generatedCode;
+////}
+
+
+//alert (em);
+//myForm.on("submit", function(e) {
+//  e.preventDefault();
+//alert('message');
+//$('#send').on('click',function  sendEmail(){
+//email = '"'+$("#email").val()+'"';
+////	a
+//	
+//return Email.send({
+//    Host : "smtp.gmail.com",
+//    Username : "wlegoofkool@gmail.com",
+//    Password : "Mamba34@",
+//    To : "wlegoofkool@mail.ru",
+//    From : "wlegoofkool@gmail.com",
+//    Subject : "This is the sdsfsubject",
+//    Body : "And this is the body"
+//}).then(
+//  message => alert(message)
+//  alert(email);
+//);
+//});
 /* function go( url )  { window.location.href=url;
 	/* if (url.indexOf('#')) {$(url).modal('show');} */
 	/* else window.location.href=url; 

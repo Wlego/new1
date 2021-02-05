@@ -5,9 +5,9 @@
 		
 		
 			<form class="form-horizontal">
-			<div class="container">
+			
 				<h2>Регистрация</h2>
-				<div class="clear"><br /></div>
+				<div class="clear"><br/></div>
 				<div class="col-xs-3">
 				<div class="avatar">
 					<a class="thumbnail "><span class="glyphicon glyphicon-user" style="font-size:100"></span></a>
@@ -71,12 +71,12 @@
 				</label>
 				</div>
 				</div>	
-			</div>
+			
 			</form>
 			<br />
 			<div class="form-group">
 				<div class="col-xs-offset-3 col-xs-9">
-				<button onclick="post_query('/new1/gform.php', 'reg', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')"  class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
+				<button onclick="post_query('/new1/gform.php', 'reg', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
 				<!-- <button class="reg">0</button> -->
 				</div>
 			</div>	

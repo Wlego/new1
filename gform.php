@@ -1,4 +1,4 @@
-<?
+<?php
 /* echo 'ok'; */
 
 $CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
@@ -84,11 +84,10 @@ else if ($_POST['confirm_f']) {
 		}
 		else {
 			go('код введен неверно');
-			go('#myModalBoxCod');
-		}
+			
 		unset($_SESSION['confirm']);
 }
-
+}
 
 
 ?>

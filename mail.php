@@ -14,7 +14,7 @@ $theme = $_POST['theme'];
 $email = $_POST['email'];
 $name = $_POST['name'];
 $message = $_POST['message'];
-//$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 try{
 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -26,7 +26,7 @@ $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, 
 $mail->Port = 465; // TCP port to connect to / этот порт может отличаться у других провайдеров
 
 $mail->setFrom('wlegoofkool@mail.ru'); // от кого будет уходить письмо?
-$mail->addAddress('wlegoofkool@gmail.ru');     // Кому будет уходить письмо 
+$mail->addAddress('wlegoofkool@mail.ru');     // Кому будет уходить письмо 
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -42,6 +42,7 @@ $mail->AltBody = '';
 $mail->send();
    header('location: feedback.php'); 
 } catch (Exception $e) {
+	echo 'Ошибка: ' . $mail->ErrorInfo;
     echo 'Error';
 }
 ?>

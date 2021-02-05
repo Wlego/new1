@@ -1,5 +1,5 @@
 cd f:/WebServers/denwer-master/home/localhost/www/new1/
-
+53248a87-ef57-4ee5-a6e7-485571cead89
 1.форма с вызовом ajax
 2.ajax который отправляет данные формы в файл gform
 3.gform записывает данные в базу.

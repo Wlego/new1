@@ -56,7 +56,7 @@
 						<ul class="nav navbar-nav collapse navbar-collapse">
 							<li><a href="index.php">О нас</a></li>
 							<li><a href="feedback.php" >Обратная связь</a></li>
-							<li><a href="#myModalBox" data-toggle="modal">Вход</a></li>
+							<li><a href="#myModalBoxEnter" data-toggle="modal">Вход</a></li>
 							<li><a href="reg.php" >Регистрация</a></li>
 						</ul>	
 					</div>
