@@ -178,7 +178,7 @@ function post_query( url, name, data ) {
 		str += '&' + v + '=' + $('#' + v).val();
 	} );
 
-	/* alert( str); */
+	//alert( str);
 	$.ajax(
 
 	{
@@ -193,7 +193,13 @@ function post_query( url, name, data ) {
 			
 			if (obj.indexOf('#')!=-1) $(obj).modal('show');
 			else if (obj.indexOf('код введен неверно')!=-1) {alert( obj ); $('#myModalBoxCod').modal('show');}
-			else if (obj.indexOf('.php')!=-1) window.location.href=obj;
+			else if (obj.indexOf('Данный E-mail незарегистрирован')!=-1){
+				$('#myModalBoxR .col-md-12').eq(1).remove();
+				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}
+			else if (obj.indexOf('Пароль был отправлен вам на почту')!=-1){
+				$('#myModalBoxR .col-md-12').eq(1).remove();
+				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
+			//else if (obj.indexOf('.php')!=-1) window.location.href=obj;
 			else alert( obj );
 	}
 	}

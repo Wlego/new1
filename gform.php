@@ -1,5 +1,5 @@
-<?php
-/* echo 'ok'; */
+ <?php
+//echo ('ok');
 
 $CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
 session_start();
@@ -10,8 +10,8 @@ function go( $url ) {
 	exit($url);
 }
 
-function email_valid() {
-	if ( !filter_var( $_POST['inputEmail'], FILTER_VALIDATE_EMAIL))
+function email_valid($val) {
+	if ( !filter_var( $val, FILTER_VALIDATE_EMAIL))
 	{go('E-mail указан неверно');}
 }
 
@@ -40,9 +40,10 @@ message('Авторизация');
 
 
 else if ($_POST['reg_f']) {
-	email_valid();
-	password_valid();
 	$res=$_POST['inputEmail'];
+	email_valid($res);
+	password_valid();
+	
 	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")) )
 	{go('Этот E-mail занят');}
 	
@@ -66,8 +67,25 @@ else if ($_POST['reg_f']) {
 
 
 else if ($_POST['recovery_f']) {
+	//$_SESSION['recovery']=$_POST;
+	//echo('дошло');
+	$res=$_POST['Email'];
+	email_valid($res);
+	//echo($res);
+	//$_SESSION['recovery']=email_valid($res);
+	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")) )
+	{$s=mysqli_query($CONNECT, "SELECT `inputPassword` FROM `users` WHERE `inputEmail` = '".$res."'");
+	$password=mysqli_fetch_assoc($s);
+	$pas=$password['inputPassword'];
+	//print_r($pas);
+	mail($_POST['Email'], 'Восстановление пароля', "Ваш пароль: <b>$pas</b>");
+	go('Пароль был отправлен вам на почту');
+	}
+	else {go('Данный E-mail незарегистрирован');
+	//$b='Данный E-mail незарегистрирован';
+	//$_SESSION['recovery']=$b;
+		}
 
-message('Восстановление пароля');
 
 }
 
@@ -77,7 +95,7 @@ message('Восстановление пароля');
 
 else if ($_POST['confirm_f']) {
 		
-		
+		password_valid();
 		if ( $_SESSION['confirm']['code'] == $_POST['cod'] ){
 			mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "'.$_POST['lastName'].'", "'.$_POST['firstName'].'", "'.$_POST['fatherName'].'", "'.$_POST['inputEmail'].'", "'.$_POST['inputPassword'].'", "'.$_POST['phoneNumber'].'", "'.$_POST['postalAddress'].'", CURRENT_TIMESTAMP)');	
 			go('#myModalBoxEnter');

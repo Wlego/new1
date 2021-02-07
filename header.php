@@ -1,5 +1,5 @@
 <!-- Doctype HTML -->
-
+<?php session_start()?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 	<!-- мета тег для определения кодировки сайта -->
