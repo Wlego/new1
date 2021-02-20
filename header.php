@@ -1,3 +1,4 @@
+
 <!-- Doctype HTML -->
 
 <html>
@@ -54,10 +55,19 @@
 					
 					<div class="navbar-right menu" ><!-- id="menuHrefs" -->
 						<ul class="nav navbar-nav collapse navbar-collapse">
-							<li><a href="index.php">О нас</a></li>
-							<li><a href="feedback.php" >Обратная связь</a></li>
+						
+						
+							<li><a href="/new1/">О нас</a></li>
+							<li><a href="feedback" >Обратная связь</a></li>
+							<?php if (!$_SESSION[$key])
+								 echo'
 							<li><a href="#myModalBoxEnter" data-toggle="modal">Вход</a></li>
-							<li><a href="reg.php" >Регистрация</a></li>
+							<li><a href="reg" >Регистрация</a></li>';
+							else echo'
+							<li><a href="/new1/" >Выйти</a></li>';
+							unset($_SESSION['id']);						
+							?>
+							
 						</ul>	
 					</div>
 				</div>	
@@ -65,4 +75,3 @@
 		</div>
 		
 	</header>
-	

@@ -1,4 +1,4 @@
-<?php include_once "header.php" ?>
+
 	
 	<div class="container">
 		<div class="col-sm-9">
@@ -10,7 +10,7 @@
 				<div class="clear"><br/></div>
 				<div class="col-xs-3">
 				<div class="avatar">
-					<a class="thumbnail "><span class="glyphicon glyphicon-user" style="font-size:100"></span></a>
+					<a class="thumbnail "><span class="glyphicon glyphicon-user" style="font-size:90"></span></a>
 				</div>
 				</div>
 				<div class="col-xs-9">
@@ -66,7 +66,7 @@
 				</div>
 				<div class="form-group">
 				<div class="col-xs-offset-3 col-xs-9">
-				<label class="checkbox-inline">
+					<label class="checkbox-inline">
 					<input type="checkbox" value="agree">  Я согласен с <a href="#">условиями</a>
 				</label>
 				</div>
@@ -76,7 +76,7 @@
 			<br />
 			<div class="form-group">
 				<div class="col-xs-offset-3 col-xs-9">
-				<button onclick="post_query('/new1/gform.php', 'reg', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
+				<button onclick="post_query('gform.php', 'reg', 'inputEmail.inputPassword')" type="button" class="btn btn-default reg" value="Регистрация">Зарегистрироваться</button>
 				<!-- <button class="reg">0</button> -->
 				</div>
 			</div>	
@@ -100,6 +100,12 @@
 								<div class="form-group ">
 									<label class="control-label">Код</label>				
 									<input type="text" id="cod" class="form-control" name="cod" placeholder="Введите код"/>
+									<br/>
+									<div class="col-md-12">
+										<div class="form-group ">
+											<p class="h6 danger">Код был выслан на указанную вами почту.</p>
+										</div>
+									</div>
 								</div>
 							</div>
 							</div>
@@ -109,11 +115,10 @@
 				<!-- Футер модального окна -->
 				<div class="modal-footer">
 					<div class="form-group ">
-					<button onclick="post_query('/new1/gform.php', 'confirm', 'cod.lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>
+					<button onclick="post_query('gform.php', 'confirm', 'cod.lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>	 
  
-	<?php include_once "footer.php" ?>

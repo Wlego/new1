@@ -1,3 +1,5 @@
+https://nizhnekamsk.hh.ru/resume/4ade4f3fff0868f12d0039ed1f4d704d65326f
+
 cd f:/WebServers/denwer-master/home/localhost/www/new1/
 53248a87-ef57-4ee5-a6e7-485571cead89
 1.форма с вызовом ajax

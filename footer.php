@@ -1,3 +1,4 @@
+
 <div class="clear-fix"><br/></div>
 		<div class="container">
 		<div id="main_soc_block">
@@ -19,7 +20,7 @@
 					<!-- Заголовок модального окна -->
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title">Вход</h4>
+						<h4 class="modal-title">Авторизация</h4>
 					</div>
 					<!-- Основное содержимое модального окна -->
 					<div class="modal-body">
@@ -28,14 +29,14 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group ">
-										<label class="control-label">Логин</label>				
-										<input type="text" id="login" class="form-control"name="login" placeholder="Логин"/>
+										<label class="control-label">Email</label>				
+										<input type="text" id="Email" class="form-control"name="Email" placeholder="Email"/>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group ">
 										<label class="control-label">Пароль</label>				
-										<input type="text" id="password" class="form-control"name="password" placeholder="пароль"/>
+										<input type="text" id="Password" class="form-control"name="Password" placeholder="пароль"/>
 									</div>
 								</div>
 								</div>
@@ -46,7 +47,7 @@
 					<div class="modal-footer">
 						<div class="form-group ">
 						<a href="#myModalBoxR" class="next h5">восстановить пароль</a>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Войти</button>
+						<button onclick="post_query('gform.php', 'login' , 'Email.Password')" type="button" class="btn btn-default" data-dismiss="modal">Войти</button>
 						<button type="button" class="btn btn-default">Выйти</button>
 						</div>
 					</div>
@@ -75,15 +76,8 @@
 								<div class="col-md-12">
 									<div class="form-group ">
 										<label class="control-label">Email</label>				
-										<input type="text" id="Email" class="form-control"name="Email" placeholder="Email"/>
-											 <?php 
+										<input type="text" id="mail" class="form-control"name="mail" placeholder="Email"/>											
 											
-											//echo ('<p>'.$_SESSION['recovery'].'</p>');
-											//$a='Данный E-mail незарегистрирован';
-											//if ($_SESSION['recovery']==$a)
-											//{echo ('<p>'.$_SESSION['recovery'].'</p>');	}
-											//unset($_SESSION['recovery']);
-											?> 
 									</div>
 								</div>								 
 							</div>
@@ -94,7 +88,7 @@
 					<div class="modal-footer">
 						<div class="form-group ">
 						<!-- <a href="#">восстановить пароль</a> -->
-						<button onclick="post_query('/new1/gform.php', 'recovery' , 'Email')" type="button" class="btn btn-default">отправить</button> <!--  data-dismiss="modal" -->
+						<button onclick="post_query('gform.php', 'recovery' , 'mail')" type="button" class="btn btn-default">отправить</button> <!--  data-dismiss="modal" -->
 						<!-- <button type="button" class="btn btn-default">Выйти</button> -->
 						</div>
 					</div>
