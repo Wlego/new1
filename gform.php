@@ -4,7 +4,7 @@ session_start();
 
 $CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
 
-if (! $CONNECT ) echo('MySQL error');
+if (!$CONNECT ) echo('MySQL error');
 
 /* mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "dfgdgdf", "fgsfsgs", "dfgdfg", "sfgfdgdfg", "fdgdfsg", "3211312312", "231321321312", CURRENT_TIMESTAMP)'); */
 function go( $url ) {
@@ -42,7 +42,7 @@ if ($_POST['login_f']) {
 	email_valid($res);
 	password_valid($res1);
 	//echo ($vali);
-	if ( !mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."' AND `inputPassword` = '".$vali."'")) )
+	if ( !mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."' AND `inputPassword` = '".$vali."'")))
 		{go('Данный E-mail ненайден или пароль не совпадает.');}
 	
 	$row=mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `inputEmail` = '".$res."'"));
@@ -50,6 +50,7 @@ if ($_POST['login_f']) {
 		foreach($row as $key => $value)
 		//print_r($value);
 		$_SESSION[$key] = $value;
+		$_SESSION['loader']=0;
 			//$_SESSION['id'] = 1;
 			//print_r($_SESSION['id']);
 	go('history.php');
@@ -66,7 +67,7 @@ else if ($_POST['reg_f']) {
 	//echo ($vali);
 	password_valid($resu);
 	//echo ($vali);
-	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")) )
+	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")))
 	{go('Этот E-mail занят');}
 	
 	
@@ -132,5 +133,25 @@ else if ($_POST['confirm_f']) {
 }
 }
 
+else if ($_POST['exits_f']) {		
+		session_destroy();
+		go('/new1/.php');
+		
+}
 
+else if ($_POST['loader']) {
+	$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
+	if(!mysqli_num_rows($querys)){
+		if($_SESSION['loader']==0)go('empy');
+		else go('end');
+	
+	}
+	$_SESSION['loader']+=2;
+	$go=array();
+	while($rows=mysqli_fetch_assoc($querys)){
+		$go+=$rows['text'];
+		//go($go);
+	}
+	go('приевет');
+}
 ?>

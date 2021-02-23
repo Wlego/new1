@@ -1,12 +1,13 @@
 <?php
 
 	
+	
 //header
-session_start();
+
 include_once "header.php"; 
 	//var_dump($_SERVER);
 
-	
+
 	
 //body	
 	
@@ -17,11 +18,14 @@ else {
 	if ( !preg_match('/^[A-z0-9\/]{3,15}$/', $page) ) not_found();
 }
 
-echo ($_SESSION['id']);
+
+session_start();
+
+
 
 if ( file_exists('all/'.$page.'.php') ) include 'all/'.$page.'.php';
 
-else if ($_SESSION['regdate'] && file_exists('auth/'.$page.'.php')) include 'auth/'.$page.'.php';
+else if ($_SESSION['id'] && file_exists('auth/'.$page.'.php')) include 'auth/'.$page.'.php';
 
 else if ( !$_SESSION['id'] && file_exists('guest/'.$page.'.php') ) include 'guest/'.$page.'.php';
 

@@ -203,8 +203,14 @@ function post_query( url, name, data ) {
 				$('#myModalBoxR .col-md-12').eq(1).remove();
 				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
 			else if (obj.indexOf('.php')!=-1) {
-				obj=obj.slice(0,-4);				
-				window.location.href=obj;}
+				obj=obj.slice(0,-4);
+			setTimeout(function(){window.location.href = obj},5);		
+			//window.location.href = obj;
+			}
+			else if (obj.indexOf('empty')!=-1)
+				{$('#content').text('история пуста');}
+			else if(obj.indexOf('end')!=-1)	
+				{$('#content').append(obj);}
 			else alert( obj );
 	}
 	}
@@ -253,8 +259,21 @@ $(".next").click( function (){$(".modal").modal("hide");//закрыть все 
    $("#myModalBoxR").modal('show');//открыть нужное
 });
 
+$(".exit").click( function(){post_query( 'gform.php', 'exits', 'data');});
 
+$(".load").click( function(){post_query( 'gform.php', 'loader', 'data');});
+//function load_page(){
+//	$.get('history',function(data){
+//	if (data=='empty')
+//		{$('#content').text('история пуста');}
+//	else if(data!='end')	
+//		{$('#content').append(data);}	
+//	});
+//}
 
+//$(document).ready(function(){
+//	load_page();
+//});
 //const myForm = $("#myForm");
 
 ////const code = myForm.find("#code");

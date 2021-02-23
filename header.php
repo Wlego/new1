@@ -1,5 +1,5 @@
-
-<!-- Doctype HTML -->
+<?session_start();?>
+<!Doctype HTML>
 
 <html>
 <head>
@@ -57,15 +57,17 @@
 						<ul class="nav navbar-nav collapse navbar-collapse">
 						
 						
-							<li><a href="/new1/">О нас</a></li>
+							<li><a href="/new1/">Главаная</a></li>
 							<li><a href="feedback" >Обратная связь</a></li>
-							<?php if (!$_SESSION[$key])
+							<?php if (!$_SESSION['id'])
 								 echo'
 							<li><a href="#myModalBoxEnter" data-toggle="modal">Вход</a></li>
 							<li><a href="reg" >Регистрация</a></li>';
 							else echo'
-							<li><a href="/new1/" >Выйти</a></li>';
-							unset($_SESSION['id']);						
+							<li><a href="history" >Профиль</a></li>
+							<li><a href="history" >История</a></li>
+							<li><a href="#" class="exit">Выйти</a></li>';
+													
 							?>
 							
 						</ul>	
