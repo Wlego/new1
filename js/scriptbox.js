@@ -49,7 +49,7 @@ function slider(){
 	if (massivimgin[i] == massivimgin[i+1]){mas.push(i);}
 		}
 		
-	/* вычисляем и создаем массив первых элементов групп одинаковых элементов */
+	/* вычисляем и создаем массив первых элементов групп одинаковых элементов*/
 	for(var i=mas.length;i>0;i--){
 	if ((mas[i]-mas[i-1])>1){mas1.push(mas[i]);}
 /* 	if(i-1==0){mas1.push(mas[i]-1);} */ 
@@ -187,7 +187,7 @@ function post_query( url, name, data ) {
 		data: name + '_f=1' + str,
 		cache: false,
 		success:function( result ) {
-			/* alert( result); */
+			//alert( result);
 			
 			var obj = result;
 			
@@ -195,22 +195,19 @@ function post_query( url, name, data ) {
 			else if (obj.indexOf('код введен неверно')!=-1) {alert( obj ); $('#myModalBoxCod').modal('show');}
 			else if (obj.indexOf('Данный E-mail незарегистрирован')!=-1){
 				$('#myModalBoxR .col-md-12').eq(1).remove();
-				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}
-			else if (obj.indexOf('Данный E-mail незарегистрирован')!=-1){
-				$('#myModalBoxR .col-md-12').eq(1).remove();
-				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}
+				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}			
 			else if (obj.indexOf('Пароль был отправлен вам на почту')!=-1){
 				$('#myModalBoxR .col-md-12').eq(1).remove();
 				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
 			else if (obj.indexOf('.php')!=-1) {
 				obj=obj.slice(0,-4);
-			setTimeout(function(){window.location.href = obj},5);		
-			//window.location.href = obj;
+			//setTimeout(function(){window.location.href = obj},5);		
+			window.location.href = obj;
 			}
-			else if (obj.indexOf('empty')!=-1)
-				{$('#content').text('история пуста');}
-			else if(obj.indexOf('end')!=-1)	
-				{$('#content').append(obj);}
+			//else if (obj.indexOf('empty')!=-1)
+			//	{$('#content').text('история пуста');}
+			//else if(obj.indexOf('end')!=-1)	
+			//	{$('#content').append(obj);}
 			else alert( obj );
 	}
 	}
@@ -259,9 +256,12 @@ $(".next").click( function (){$(".modal").modal("hide");//закрыть все 
    $("#myModalBoxR").modal('show');//открыть нужное
 });
 
-$(".exit").click( function(){post_query( 'gform.php', 'exits', 'data');});
 
-$(".load").click( function(){post_query( 'gform.php', 'loader', 'data');});
+
+//$("#exit").click( function(){post_query( 'gform.php', 'exits', 'data');});
+
+//$(".load").click( function(){post_query( 'gform.php', 'loader', 'data');});
+
 //function load_page(){
 //	$.get('history',function(data){
 //	if (data=='empty')

@@ -35,6 +35,8 @@ function password_valid($val) {
 /* if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = 'Admin'")) )
 	 	echo ('Этот E-mail занят'); */
 
+//авторизация	
+	
 if ($_POST['login_f']) {
 	$res=$_POST['Email'];
 	$res1=$_POST['Password'];
@@ -50,15 +52,15 @@ if ($_POST['login_f']) {
 		foreach($row as $key => $value)
 		//print_r($value);
 		$_SESSION[$key] = $value;
-		$_SESSION['loader']=0;
+		//$_SESSION['loader']=0;
 			//$_SESSION['id'] = 1;
 			//print_r($_SESSION['id']);
-	go('history.php');
+	go('profile.php');
 
 
 }
 
-
+//регистрация
 
 else if ($_POST['reg_f']) {
 	$res=$_POST['inputEmail'];
@@ -88,6 +90,7 @@ else if ($_POST['reg_f']) {
 
 
 
+//восстановление пароля
 
 else if ($_POST['recovery_f']) {
 	//$_SESSION['recovery']=$_POST;
@@ -114,7 +117,7 @@ else if ($_POST['recovery_f']) {
 
 
 
-
+//подтверждение кода высланного на почту
 
 else if ($_POST['confirm_f']) {
 	
@@ -133,25 +136,25 @@ else if ($_POST['confirm_f']) {
 }
 }
 
-else if ($_POST['exits_f']) {		
-		session_destroy();
-		go('/new1/.php');
-		
-}
+//else if ($_POST['exits_f']) {		
+//		session_destroy();
+//		header('location: /new1/');
+//		
+//}
 
-else if ($_POST['loader']) {
-	$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
-	if(!mysqli_num_rows($querys)){
-		if($_SESSION['loader']==0)go('empy');
-		else go('end');
-	
-	}
-	$_SESSION['loader']+=2;
-	$go=array();
-	while($rows=mysqli_fetch_assoc($querys)){
-		$go+=$rows['text'];
-		//go($go);
-	}
-	go('приевет');
-}
+//else if ($_POST['loader']) {
+//	$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
+//	if(!mysqli_num_rows($querys)){
+//		if($_SESSION['loader']==0)go('empy');
+//		else go('end');
+//	
+//	}
+//	$_SESSION['loader']+=2;
+//	$go=array();
+//	while($rows=mysqli_fetch_assoc($querys)){
+//		$go+=$rows['text'];
+//		//go($go);
+//	}
+//	go('приевет');
+//}
 ?>

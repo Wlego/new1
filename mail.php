@@ -21,7 +21,7 @@ $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'smtp.mail.ru';  																							// Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = 'wlegoofkool@mail.ru'; // Ваш логин от почты с которой будут отправляться письма
-$mail->Password = '@576varic'; // Ваш пароль от почты с которой будут отправляться письма
+$mail->Password = 'varic576@'; // Ваш пароль от почты с которой будут отправляться письма
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465; // TCP port to connect to / этот порт может отличаться у других провайдеров
 
@@ -40,7 +40,8 @@ $mail->Body    = '' .$theme .'<br>'.$email.'<br>'.$name.'<br>'.$message;
 $mail->AltBody = '';
 
 $mail->send();
-   header('location: feedback.php'); 
+	echo 'Ваше сообщение отправлено! Ждите ответа.';
+	header('location: feedback'); 
 } catch (Exception $e) {
 	echo 'Ошибка: ' . $mail->ErrorInfo;
     echo 'Error';

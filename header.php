@@ -24,7 +24,7 @@
 
 <title>Тестовый сайт</title>												<!--название вкладки браузера -->
 
-
+<script src="js/jquery.js"></script>
 </head>
 <body>
 <!-- <script type="text/javascript">
@@ -42,7 +42,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 						</button>
-						<a class="nav navbar-brand" href="index.php" title="На главную" id="logo">МЕБЕЛЬ НА ЗАКАЗ</a> 
+						<a class="nav navbar-brand" href="/new1/" title="На главную" id="logo">МЕБЕЛЬ НА ЗАКАЗ</a> 
 					</div>
 					
 					
@@ -62,11 +62,11 @@
 							<?php if (!$_SESSION['id'])
 								 echo'
 							<li><a href="#myModalBoxEnter" data-toggle="modal">Вход</a></li>
-							<li><a href="reg" >Регистрация</a></li>';
+							<li><a href="#myModalBoxReg" data-toggle="modal">Регистрация</a></li>';
 							else echo'
-							<li><a href="history" >Профиль</a></li>
+							<li><a href="profile" >Профиль</a></li>
 							<li><a href="history" >История</a></li>
-							<li><a href="#" class="exit">Выйти</a></li>';
+							<li><a href="exit">Выйти</a></li>';
 													
 							?>
 							

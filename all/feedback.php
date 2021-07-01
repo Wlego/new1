@@ -6,12 +6,8 @@
 		<div id="wrapper">
 			<div id="articles">
 				<form  action="mail.php" method="post"> <!-- class="form" -->
-				
-					
-						<label class="control-label">Тема</label>				
-						<input type="text" id="theme" class="form-control"name="theme" placeholder="тема"/>
-					
-				
+					<label class="control-label">Тема</label>				
+					<input type="text" id="theme" class="form-control"name="theme" placeholder="тема"/>
 					<label for="mail">Email</label>
 					<input type="email" id="email" class="form-control" name="email" placeholder="address@example.com"/>
 					<label for="name">Name</label>

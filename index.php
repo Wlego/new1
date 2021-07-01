@@ -4,7 +4,7 @@
 	
 //header
 
-include_once "header.php"; 
+require_once "header.php"; 
 	//var_dump($_SERVER);
 
 
@@ -20,7 +20,7 @@ else {
 
 
 session_start();
-
+//var_dump($_SESSION['id']);
 
 
 if ( file_exists('all/'.$page.'.php') ) include 'all/'.$page.'.php';
@@ -40,7 +40,7 @@ else not_found();
 
 //footer
 
- include_once "footer.php" ;
+ require_once "footer.php" ;
 
  
  function not_found() {

@@ -276,13 +276,42 @@ form input {
 	padding:5px;						/*отступ внутри объекта*/
 	float:left;
 	clear:both;
-	width:40%;
-	margin-bottom:10px;
+	width:5%;
+	margin:0px 0px 0px;
 }
 
 form input:focus, form textarea:focus {
 	border:2px solid brown;
 }
+
+input[type="checkbox"] {
+	margin: 0 0;
+}
+
+.btn{
+	margin-left: 3%;
+}
+
+.fio{
+    padding-right: 0px;
+}
+
+
+.row .form-horizontal h2{
+    margin-left: 30px;
+}
+
+/* @media(min-width:1024px){
+	.ava{
+		width:22%;
+	}
+}
+
+@media(max-width:1024px){
+	.ava{
+		width:100%;
+	}
+} */
 
 form textarea {
 	width:60%;
