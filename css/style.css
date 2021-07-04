@@ -305,11 +305,20 @@ input[type="checkbox"] {
 		width:180px;
 	}
 
-  @media(min-width:924px){
-	.fios{
-    padding-left: 0px;
-	}
+#fios{
+    padding-left: 5px;	
 }
+	
+ @media(max-width:1024px){
+	#fios{
+		padding-left: 0px;	
+		}
+	.fio{
+		padding-left: 19px;
+		}
+		
+}
+
 
 /*
 @media(max-width:1224px){

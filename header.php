@@ -15,6 +15,7 @@
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
 	<link href="calendar-redhead/calendar-redhead.css" rel="stylesheet">
+	<script src="js/jquery.js"></script>
 	<script src="js/style-fios.js"></script>
 	<link href="css/style.css" rel="stylesheet" type="text/css" /> 
 
@@ -25,7 +26,7 @@
 
 <title>Тестовый сайт</title>												<!--название вкладки браузера -->
 
-<script src="js/jquery.js"></script>
+
 </head>
 <body>
 <!-- <script type="text/javascript">

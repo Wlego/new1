@@ -18,6 +18,7 @@
 					</div>
 				</div>
 				
+				
 				<div id="fios">
 					<div class="form-group">
 						<label class="control-label col-xs-3" for="lastName">Фамилия:</label>
@@ -36,7 +37,7 @@
 						<div class="col-xs-9 fio">
 							<input type="text" class="form-control" id="fatherName" placeholder="Введите отчество">
 						</div>
-					</div>
+					</div>					
 				</div>
 				
 				
