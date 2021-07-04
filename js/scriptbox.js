@@ -187,7 +187,7 @@ function post_query( url, name, data ) {
 		data: name + '_f=1' + str,
 		cache: false,
 		success:function( result ) {
-			//alert( result);
+			alert( result);
 			
 			var obj = result;
 			
@@ -252,9 +252,14 @@ $('.reg').on('click',function valid_form(){
 	
 });
 
-$(".next").click( function (){$(".modal").modal("hide");//закрыть все окна
-   $("#myModalBoxR").modal('show');//открыть нужное
-});
+ $(".next").click( function (){
+	
+	$('.modal').modal('hide');//закрыть все окна
+	
+	//alert('привет');
+	//$('body').addClass('modal-open');
+	$('#myModalBoxRec').modal('show');//открыть нужное
+}); 
 
 /* $(document).ready(function() { 
             var windowWidth = $(window).width();

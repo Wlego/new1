@@ -92,7 +92,7 @@
 			
 			<div class="form-group">
 				<div class="col-xs-push-4 col-xs-6">
-				<button onclick="post_query('gform.php', 'reg', 'inputEmail.inputPassword')" type="button" class="btn btn-default reg" value="Регистрация">Сохранить</button>
+				<button onclick="post_query('gform.php', 'update', 'lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default reg" value="Регистрация">Сохранить</button>
 				<!-- <button class="reg">0</button> -->
 				</div>
 			</div>	

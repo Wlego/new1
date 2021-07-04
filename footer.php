@@ -45,7 +45,7 @@
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
 						<div class="form-group ">						
-						<button onclick="post_query('gform.php', 'reg' , 'Emailr.Passwordr')" type="button" class="btn btn-default" data-dismiss="modal">Войти</button>						
+						<button onclick="post_query('gform.php', 'reg' , 'Emailr.Passwordr')" type="button" class="btn btn-default" data-dismiss="modal">Зарегистрироваться</button>						
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
 						<div class="form-group ">
-						<a href="#myModalBoxRec" class="next h5">восстановить пароль</a>
+						<a href="#" class="next h5">восстановить пароль</a>
 						<button onclick="post_query('gform.php', 'login' , 'Email.Password')" type="button" class="btn btn-default" data-dismiss="modal">Войти</button>
 						<button type="button" class="btn btn-default">Выйти</button>
 						</div>
@@ -101,7 +101,7 @@
 		<!-- восстановление пароль -->
 		
 		
-		<div id="myModalBoxReс" class="modal fade" data-backdrop="false">
+		<div id="myModalBoxRec" class="modal fade" data-backdrop="false" >
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<!-- Заголовок модального окна -->

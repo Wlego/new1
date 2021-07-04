@@ -63,9 +63,9 @@ if ($_POST['login_f']) {
 //регистрация
 
 else if ($_POST['reg_f']) {
-	$res=$_POST['inputEmail'];
+	$res=$_POST['Emailr'];
 	email_valid($res);
-	$resu=$_POST['inputPassword'];
+	$resu=$_POST['Passwordr'];
 	//echo ($vali);
 	password_valid($resu);
 	//echo ($vali);
