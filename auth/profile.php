@@ -12,13 +12,13 @@
 				
 				<div class="clear"><br/></div>
 				
-				<div class="col-xs-3 ava" align="center">
+				<div class="col-xs-2 ava" align="center">
 					<div class="avatar col-xs-12">
 						<a class="thumbnail"><span class="glyphicon glyphicon-user" style="font-size:100px"></span></a>
 					</div>
 				</div>
 				
-				<div class="col-xs-9">
+				<div id="fios">
 					<div class="form-group">
 						<label class="control-label col-xs-3" for="lastName">Фамилия:</label>
 						<div class="col-xs-9 fio">
@@ -38,7 +38,8 @@
 						</div>
 					</div>
 				</div>
-					
+				
+				
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="inputEmail">Email:</label>
 					<div class="col-xs-9">

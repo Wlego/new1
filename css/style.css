@@ -301,17 +301,25 @@ input[type="checkbox"] {
     margin-left: 30px;
 }
 
-/* @media(min-width:1024px){
-	.ava{
-		width:22%;
+.ava{
+		width:180px;
+	}
+
+  @media(min-width:924px){
+	.fios{
+    padding-left: 0px;
 	}
 }
 
-@media(max-width:1024px){
+/*
+@media(max-width:1224px){
 	.ava{
-		width:100%;
+		width:180px;
 	}
-} */
+	/* .form-group .col-xs-9{
+    display: none;
+	} 
+} */ 
 
 form textarea {
 	width:60%;
