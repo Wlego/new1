@@ -311,7 +311,7 @@ input[type="checkbox"] {
     padding-left: 5px;	
 }
 	
- @media(max-width:1024px){
+@media(max-width:1024px){
 	#fios{
 		padding-left: 0px;	
 		}
@@ -321,7 +321,27 @@ input[type="checkbox"] {
 		
 }
 
+.form-horizontal{
+	margin-top: 6px;
+}
 
+.pass{
+	margin-top: 35px;
+}
+
+.glyphicon-remove {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  transition: right 0.2s;
+}
+
+.show{
+  position: absolute;
+  top: 11px;
+  right: 25px;
+  transition: right 0.2s;
+}
 
 
 form textarea {

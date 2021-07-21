@@ -117,7 +117,7 @@ else if ($_POST['recovery_f']) {
 
 
 
-//подтверждение кода высланного на почту
+//подтверждение кода высланного на почту и регистрация пользователя
 
 else if ($_POST['confirm_f']) {
 	
@@ -126,7 +126,7 @@ else if ($_POST['confirm_f']) {
 		
 		
 		if ( $_SESSION['confirm']['code'] == $_POST['cod'] ){
-			mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "'.$_POST['lastName'].'", "'.$_POST['firstName'].'", "'.$_POST['fatherName'].'", "'.$_POST['inputEmail'].'", "'.$vali.'", "'.$_POST['phoneNumber'].'", "'.$_POST['postalAddress'].'", CURRENT_TIMESTAMP)');	
+			mysqli_query($CONNECT,'INSERT INTO `users` (`id`,`inputEmail`, `inputPassword`, `regdate`) VALUES (null, "'.$_POST['inputEmail'].'", "'.$vali.'", CURRENT_TIMESTAMP)');	
 			go('#myModalBoxEnter');
 		}
 		else {
@@ -136,6 +136,12 @@ else if ($_POST['confirm_f']) {
 }
 }
 
+else if ($_POST['update_f']) {
+	$res=$_POST['inputEmail'];	
+	email_valid($res);	
+	 
+	mysqli_query($CONNECT,'UPDATE `users` SET  `lastName`="'.$_POST['lastName'].'", `firstName`="'.$_POST['firstName'].'", `fatherName`="'.$_POST['fatherName'].'", `inputEmail`="'.$_POST['inputEmail'].'", `phoneNumber`="'.$_POST['phoneNumber'].'", `postalAddress`="'.$_POST['postalAddress'].'" WHERE `inputEmail`="'.$_SESSION['inputEmail'].'" ');	
+}
 //else if ($_POST['exits_f']) {		
 //		session_destroy();
 //		header('location: /new1/');

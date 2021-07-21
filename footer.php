@@ -98,7 +98,7 @@
 		
 		
 		
-		<!-- восстановление пароль -->
+		<!-- восстановление пароля -->
 		
 		
 		<div id="myModalBoxRec" class="modal fade" data-backdrop="false" >
@@ -127,10 +127,8 @@
 					
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
-						<div class="form-group ">
-						<!-- <a href="#">восстановить пароль</a> -->
-						<button onclick="post_query('gform.php', 'recovery' , 'mailc')" type="button" class="btn btn-default" data-dismiss="modal">отправить</button> <!--  data-dismiss="modal" -->
-						<!-- <button type="button" class="btn btn-default">Выйти</button> -->
+						<div class="form-group ">						
+						<button onclick="post_query('gform.php', 'recovery' , 'mailc')" type="button" class="btn btn-default" data-dismiss="modal">отправить</button> <!--  data-dismiss="modal" -->						
 						</div>
 					</div>
 				</div>
@@ -171,7 +169,7 @@
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
 						<div class="form-group ">
-						<button onclick="post_query('gform.php', 'confirm', 'cod.lastName.firstName.fatherName.inputEmail.inputPassword.phoneNumber.postalAddress')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>
+						<button onclick="post_query('gform.php', 'confirm', 'cod')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>
 						</div>
 					</div>
 				</div>

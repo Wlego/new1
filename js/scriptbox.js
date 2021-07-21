@@ -164,12 +164,13 @@ function slider(){
 		
 	});	
 	
+		
 	
 	
 /* отправка форм на сервер	 */
 	
 function post_query( url, name, data ) {
-
+	
 	
 	var str = '';
 
@@ -185,28 +186,28 @@ function post_query( url, name, data ) {
 		url : url,
 		type: 'POST',
 		data: name + '_f=1' + str,
-		cache: false,
+		cache: false,		
 		success:function( result ) {
-			alert( result);
+			//alert( result);
 			
 			var obj = result;
 			
 			if (obj.indexOf('#')!=-1) $(obj).modal('show');
 			else if (obj.indexOf('код введен неверно')!=-1) {alert( obj ); $('#myModalBoxCod').modal('show');}
 			else if (obj.indexOf('Данный E-mail незарегистрирован')!=-1){
-				$('#myModalBoxR .col-md-12').eq(1).remove();
-				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}			
+				$('#myModalBoxReg .col-md-12').eq(1).remove();
+				$('#myModalBoxReg .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}			
 			else if (obj.indexOf('Пароль был отправлен вам на почту')!=-1){
-				$('#myModalBoxR .col-md-12').eq(1).remove();
-				$('#myModalBoxR .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
+				$('#myModalBoxReg .col-md-12').eq(1).remove();
+				$('#myModalBoxReg .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
 			else if (obj.indexOf('.php')!=-1) {
 				obj=obj.slice(0,-4);
-			//setTimeout(function(){window.location.href = obj},5);		
+			//setTimeout(function(){window.location.href = obj},5);
 			window.location.href = obj;
 			}
 			//else if (obj.indexOf('empty')!=-1)
 			//	{$('#content').text('история пуста');}
-			//else if(obj.indexOf('end')!=-1)	
+			//else if(obj.indexOf('end')!=-1)
 			//	{$('#content').append(obj);}
 			else alert( obj );
 	}
@@ -218,7 +219,7 @@ function post_query( url, name, data ) {
 
 
 
-/* изменения иконок при валидации данных формы */
+/* крестики при валидации данных формы профиля */
 
 $('.reg').on('click',function valid_form(){
 	/* alert('1'); */
@@ -232,35 +233,94 @@ $('.reg').on('click',function valid_form(){
 	if ($('#fatherName').val()==""){$('div.form-group').eq(3).addClass('has-error has-feedback');
 		$('#fatherName').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
 		
-	if ($('#inputPassword').val()!==$('#confirmPassword').val()){$('div.form-group').eq(6).addClass('has-error has-feedback');
-		$('#confirmPassword').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}	
+	if ($('#inputEmail').val()==""){$('div.form-group').eq(4).addClass('has-error has-feedback');
+		$('#inputEmail').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');}			
 	
-	if ($('#phoneNumber').val()==""){$('div.form-group').eq(7).addClass('has-error has-feedback');
-		$('#phoneNumber').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
+	if ($('#phoneNumber').val()==""){$('div.form-group').eq(5).addClass('has-error has-feedback');
+		$('#phoneNumber').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');}
 		
-	if ($('#postalAddress').val()==""){$('div.form-group').eq(8).addClass('has-error has-feedback');
-		$('#postalAddress').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');}
+	if ($('#postalAddress').val()==""){$('div.form-group').eq(6).addClass('has-error has-feedback');
+		$('#postalAddress').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');}
 		
 	
 	
-	if ($('#lastName').val()!=""){$('div.form-group').eq(1).removeClass('has-error has-feedback');}
-	if ($('#firstName').val()!=""){$('div.form-group').eq(2).removeClass('has-error has-feedback');}
-	if ($('#fatherName').val()!=""){$('div.form-group').eq(3).removeClass('has-error has-feedback');}
-	if ($('#inputPassword').val() == $('#confirmPassword').val()){$('div.form-group').eq(6).removeClass('has-error has-feedback');}
-	if ($('#phoneNumber').val()!=""){$('div.form-group').eq(7).removeClass('has-error has-feedback');}
-	if ($('#postalAddress').val()!=""){$('div.form-group').eq(8).removeClass('has-error has-feedback');}
+	
+	//if ($('#firstName').val()!=""){$('div.form-group').eq(2).removeClass('has-error has-feedback');}
+	//if ($('#fatherName').val()!=""){$('div.form-group').eq(3).removeClass('has-error has-feedback');}	
+	//if ($('#phoneNumber').val()!=""){$('div.form-group').eq(5).removeClass('has-error has-feedback');}
+	//if ($('#postalAddress').val()!=""){$('div.form-group').eq(6).removeClass('has-error has-feedback');}
 	
 });
 
- $(".next").click( function (){
-	
-	$('.modal').modal('hide');//закрыть все окна
-	
-	//alert('привет');
-	//$('body').addClass('modal-open');
-	$('#myModalBoxRec').modal('show');//открыть нужное
-}); 
+//валидации формы смены пароля
 
+$('.passes').on('click',function valid_form(){
+	/* alert('1'); */
+	$('form .glyphicon-remove').remove();
+	$('div.different').remove();
+	if ($('#inputPassword').val()==""){$('div.form-group').eq(7).addClass('has-error has-feedback');
+		$('#inputPassword').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');}
+
+	if ($('#confirmPassword').val()==""){$('div.form-group').eq(8).addClass('has-error has-feedback');
+		$('#confirmPassword').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');}
+		
+	else if ($('#inputPassword').val()!==$('#confirmPassword').val()){$('div.form-group').eq(8).addClass('has-error has-feedback');
+		$('#confirmPassword').after('<span class="glyphicon glyphicon-remove show form-control-feedback"></span>');
+		$('div.confirmPassword').after('<div class="form-group col-xs-push-3 col-xs-6 different"><h5 style="color:red">Пароли не совпадают!</h5></div>');}
+
+	//if ($('#inputPassword').val() == $('#confirmPassword').val()){$('div.form-group').eq(6).removeClass('has-error has-feedback');}
+		
+});	
+
+	
+/* $(document).ready(function() {
+if ($('#lastName').val()!=""){$('div.form-group').eq(1).removeClass('has-error has-feedback');
+		$('#lastName').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>').remove();}
+}); */
+
+//модальные окна
+
+ $(".next").click( function (){	
+	$('.modal').modal('hide');//закрыть все окна
+	$('#myModalBoxRec').modal('show');//открыть нужное
+});
+
+
+//активация кнопки при нажатии на checkbox
+
+$('#cheked').on('change', function(){
+  if($(this).is(':checked')) $('.reg').attr('disabled', false);
+  else $('.reg').attr('disabled', true);
+});
+
+//Вызов загрузки аватара
+
+function uploadfunc(){
+	$('#uploadimage').click();
+	var files; // переменная. будет содержать данные файлов
+
+	// заполняем переменную данными, при изменении значения поля file 
+	$('input[type=file]').on('change', function(){
+		files = this.files;
+	
+
+	var file_data = $('#uploadimage').prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+	 $.ajax({
+                url: '/new1/auth/uploadimage.php',
+                dataType: 'text',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(php_script_response){
+                    alert(php_script_response);
+                }
+     });
+	 });
+}
 /* $(document).ready(function() { 
             var windowWidth = $(window).width();
             if(windowWidth >= 1250)$("#fios").addClass("col-xs-9");
