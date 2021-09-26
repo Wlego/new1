@@ -2,9 +2,7 @@
 //echo ('ok');
 session_start();
 
-$CONNECT = mysqli_connect('localhost', 'root', '', 'new1'); 
-
-if (!$CONNECT ) echo('MySQL error');
+require_once "connectBDLC.php";
 
 /* mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "dfgdgdf", "fgsfsgs", "dfgdfg", "sfgfdgdfg", "fdgdfsg", "3211312312", "231321321312", CURRENT_TIMESTAMP)'); */
 function go( $url ) {
@@ -35,6 +33,8 @@ function password_valid($val) {
 /* if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = 'Admin'")) )
 	 	echo ('Этот E-mail занят'); */
 
+	
+	
 //авторизация	
 	
 if ($_POST['login_f']) {
@@ -43,20 +43,22 @@ if ($_POST['login_f']) {
 	
 	email_valid($res);
 	password_valid($res1);
-	//echo ($vali);
-	if ( !mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."' AND `inputPassword` = '".$vali."'")))
+	//echo (print_r ($masusers));
+	
+	if ( !mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."' AND `inputPassword` = '".$vali."' 
+													UNION 
+													SELECT `id` FROM `furniture_maker` WHERE `inputEmail` = '".$res."' AND `inputPassword` = '".$vali."'")))
 		{go('Данный E-mail ненайден или пароль не совпадает.');}
 	
-	$row=mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `inputEmail` = '".$res."'"));
+	$row=mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users`  WHERE `inputEmail` = '".$res."'
+													UNION
+													SELECT * FROM `furniture_maker`  WHERE `inputEmail` = '".$res."'"));
 	 	//print_r($row);
 		foreach($row as $key => $value)
 		//print_r($value);
 		$_SESSION[$key] = $value;
-		//$_SESSION['loader']=0;
-			//$_SESSION['id'] = 1;
-			//print_r($_SESSION['id']);
 	go('profile.php');
-
+	
 
 }
 
@@ -64,69 +66,35 @@ if ($_POST['login_f']) {
 
 else if ($_POST['reg_f']) {
 	$res=$_POST['Emailr'];
-	email_valid($res);
 	$resu=$_POST['Passwordr'];
+	$who=$_POST['choice'];
+	email_valid($res);	
 	//echo ($vali);
 	password_valid($resu);
-	//echo ($vali);
-	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")))
+	//go ($who);
+	if (!mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")))
 	{go('Этот E-mail занят');}
-	
-	
-		
+	else	
 	$code = random_str(5);
 	$_SESSION['confirm'] = array(
 		'code' => $code,
+		'Email'=> $res,
+		'password'=>$vali,
+		'who'=>$who
 	 	);
 	mail($_POST['inputEmail'], 'Регистрация', "Код подтверждения регистрации: <b>$code</b>");
 	/* mysqli_query($CONNECT,'INSERT INTO `users` (`id`, `lastName`, `firstName`, `fatherName`, `inputEmail`, `inputPassword`, `phoneNumber`, `postalAddress`, `regdate`) VALUES (null, "'.$_POST['lastName'].'", "'.$_POST['firstName'].'", "'.$_POST['fatherName'].'", "'.$_POST['inputEmail'].'", "'.$_POST['inputPassword'].'", "'.$_POST['phoneNumber'].'", "'.$_POST['postalAddress'].'", CURRENT_TIMESTAMP)'); */
-	go("#myModalBoxCod");
-	
-
-/* go('#myModalBox'); */
-/* #myModalBox */
-
+	go("reg");
 }
 
-
-
-//восстановление пароля
-
-else if ($_POST['recovery_f']) {
-	//$_SESSION['recovery']=$_POST;
-	//echo('дошло');
-	$res=$_POST['mail'];
-	email_valid($res);
-	//echo($res);
-	//$_SESSION['recovery']=email_valid($res);
-	if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")) )
-	{$s=mysqli_query($CONNECT, "SELECT `inputPassword` FROM `users` WHERE `inputEmail` = '".$res."'");
-	$password=mysqli_fetch_assoc($s);
-	$pas=$password['inputPassword'];
-	//print_r($pas);
-	mail($_POST['Email'], 'Восстановление пароля', "Ваш пароль: <b>$pas</b>");
-	go('Пароль был отправлен вам на почту');
-	}
-	else {go('Данный E-mail незарегистрирован');
-	//$b='Данный E-mail незарегистрирован';
-	//$_SESSION['recovery']=$b;
-		}
-
-
-}
-
-
-
-//подтверждение кода высланного на почту и регистрация пользователя
+//подтверждение кода высланного на почту при регистрация пользователя
 
 else if ($_POST['confirm_f']) {
-	
-		$resc=$_POST['inputPassword'];
-		password_valid($resc);
-		
-		
 		if ( $_SESSION['confirm']['code'] == $_POST['cod'] ){
-			mysqli_query($CONNECT,'INSERT INTO `users` (`id`,`inputEmail`, `inputPassword`, `regdate`) VALUES (null, "'.$_POST['inputEmail'].'", "'.$vali.'", CURRENT_TIMESTAMP)');	
+			if ($_SESSION['confirm']['who']==1) $table='furniture_maker';
+			else $table='users';
+			//echo $table;
+			mysqli_query($CONNECT,'INSERT INTO `'.$table.'` (`id`,`inputEmail`, `inputPassword`, `regdate`) VALUES (null, "'.$_SESSION['confirm']['Email'].'", "'.$_SESSION['confirm']['password'].'", CURRENT_TIMESTAMP)');	
 			go('#myModalBoxEnter');
 		}
 		else {
@@ -136,31 +104,90 @@ else if ($_POST['confirm_f']) {
 }
 }
 
+//восстановление пароля если утерян
+
+else if ($_POST['recovery_f']) {	
+	$res=$_POST['mailrec'];
+	$resu=$_POST['passwordrec'];
+	email_valid($res);	
+	//echo ($vali);
+	password_valid($resu);
+	//echo ($vali);
+	if (mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'
+													UNION														
+													SELECT `id` FROM `furniture_maker` WHERE `inputEmail` = '".$res."'")))
+	{$code = random_str(5);
+	$_SESSION['confirm'] = array(
+		'code' => $code,
+		'Email'=> $res,
+		'password'=>$vali
+	 	);
+	mail($_POST['inputEmail'], 'Регистрация', "Код подтверждения регистрации: <b>$code</b>");
+	go("updatepasrec");
+	
+	
+	//echo('дошло');
+	//$res=$_POST['mail'];
+	//email_valid($res);
+	//echo($res);
+	//$_SESSION['recovery']=email_valid($res);
+	//if $_POST['mail']
+	//if ( mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `inputEmail` = '".$res."'")) )		
+	//	go("#myModalBoxCod");
+	//{$s=mysqli_query($CONNECT, "SELECT `inputPassword` FROM `users` WHERE `inputEmail` = '".$res."'");
+	//$password=mysqli_fetch_assoc($s);
+	//$pas=$password['inputPassword'];
+	////print_r($pas);
+	//mail($_POST['Email'], 'Восстановление пароля', "Ваш пароль: <b>$pas</b>");
+	//go('Пароль был отправлен вам на почту');
+	}
+	else {go('Данный E-mail незарегистрирован');
+	//$b='Данный E-mail незарегистрирован';
+	//$_SESSION['recovery']=$b;
+	}
+}
+else if ($_POST['updatepasrec_f']) {
+	if ( $_SESSION['confirm']['code'] == $_POST['cod'] )
+		{
+		if (mysqli_query($CONNECT,'	UPDATE users,furniture_maker SET  users.inputPassword="'.$_SESSION['confirm']['password'].'",furniture_maker.inputPassword="'.$_SESSION['confirm']['password'].'" WHERE users.inputEmail="'.$_SESSION['confirm']['Email'].'" OR furniture_maker.inputEmail="'.$_SESSION['confirm']['Email'].'"
+									'))
+		//echo 'Ваш новый пароль сохранен.';
+		{go('Ваш новый пароль сохранен.');}
+	else {
+		go('код введен неверно');
+		//unset($_SESSION['confirm']);
+		}
+}
+}
+//обнавление пароля из под совей учетки
+
+else if ($_POST['updatepas_f']) {
+	 if ($_POST['inputPassword']==$_POST['confirmPassword'])
+	 {$resu=$_POST['inputPassword'];
+		password_valid($resu);
+		mysqli_query($CONNECT,'UPDATE users,furniture_maker SET  users.inputPassword="'.$vali.'",furniture_maker.inputPassword="'.$vali.'" WHERE users.inputEmail="'.$_SESSION['inputEmail'].'" OR furniture_maker.inputEmail="'.$_SESSION['inputEmail'].'"
+								');
+		echo 'Ваш новый пароль сохранен.';
+	 }
+	
+}
+
+//обнавление данных пользователя со страницы профиля
+
 else if ($_POST['update_f']) {
 	$res=$_POST['inputEmail'];	
 	email_valid($res);	
-	 
-	mysqli_query($CONNECT,'UPDATE `users` SET  `lastName`="'.$_POST['lastName'].'", `firstName`="'.$_POST['firstName'].'", `fatherName`="'.$_POST['fatherName'].'", `inputEmail`="'.$_POST['inputEmail'].'", `phoneNumber`="'.$_POST['phoneNumber'].'", `postalAddress`="'.$_POST['postalAddress'].'" WHERE `inputEmail`="'.$_SESSION['inputEmail'].'" ');	
+	mysqli_query($CONNECT,'UPDATE users,furniture_maker SET  users.lastName="'.$_POST['lastName'].'", users.firstName="'.$_POST['firstName'].'", users.fatherName="'.$_POST['fatherName'].'", users.inputEmail="'.$_POST['inputEmail'].'", users.phoneNumber="'.$_POST['phoneNumber'].'", users.postalAddress="'.$_POST['postalAddress'].'", 
+																furniture_maker.lastName="'.$_POST['lastName'].'", furniture_maker.firstName="'.$_POST['firstName'].'", furniture_maker.fatherName="'.$_POST['fatherName'].'", furniture_maker.inputEmail="'.$_POST['inputEmail'].'", furniture_maker.phoneNumber="'.$_POST['phoneNumber'].'", furniture_maker.postalAddress="'.$_POST['postalAddress'].'" 
+																WHERE users.inputEmail`="'.$_SESSION['inputEmail'].'" OR furniture_maker.inputEmail`="'.$_SESSION['inputEmail'].'"');
+	$row=mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `inputEmail` = '".$res."'
+													UNION
+													SELECT * FROM `furniture_maker` WHERE `inputEmail` = '".$res."'"));
+	 	//print_r($row);
+		foreach($row as $key => $value)
+		//print_r($value);
+		$_SESSION[$key] = $value;
 }
-//else if ($_POST['exits_f']) {		
-//		session_destroy();
-//		header('location: /new1/');
-//		
-//}
 
-//else if ($_POST['loader']) {
-//	$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
-//	if(!mysqli_num_rows($querys)){
-//		if($_SESSION['loader']==0)go('empy');
-//		else go('end');
-//	
-//	}
-//	$_SESSION['loader']+=2;
-//	$go=array();
-//	while($rows=mysqli_fetch_assoc($querys)){
-//		$go+=$rows['text'];
-//		//go($go);
-//	}
-//	go('приевет');
-//}
+
 ?>

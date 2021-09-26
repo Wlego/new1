@@ -61,6 +61,7 @@
 						
 							<li><a href="/new1/">Главаная</a></li>
 							<li><a href="feedback" >Обратная связь</a></li>
+							<li><a href="forum_theme" >Форум</a></li>
 							<?php if (!$_SESSION['id'])
 								 echo'
 							<li><a href="#myModalBoxEnter" data-toggle="modal">Вход</a></li>

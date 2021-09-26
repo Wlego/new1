@@ -216,11 +216,10 @@
 									</div>
 								</div>
 						</div>
-					</div> 
-					
+					</div>					
 			
 					<div class="col-sm-6">
-						<span class='glyphicon glyphicon-menu-left' style='color:red;' aria-hidden='true'></span>
+						<!-- <span class='glyphicon glyphicon-menu-left' style='color:red;' aria-hidden='true'></span> -->
 						<div class="features_items">
 							<h2 class="title text-center">Текущий раздел</h2>
 							<div class="svoi0 productinfo text-center" id="0">
@@ -232,8 +231,7 @@
 									</div>
 							</div>
 						</div>
-					</div>
-					
+					</div>					
 					
 					<div class="col-sm-3">
 						<div class="right-sidebar">

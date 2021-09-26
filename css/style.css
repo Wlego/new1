@@ -290,9 +290,7 @@ input[type="checkbox"] {
 	margin: 0 0;
 }
 
-.btn{
-	margin-left: 3%;
-}
+
 
 .fio{
     padding-right: 0px;
@@ -536,7 +534,17 @@ footer, #page-wrap:after {				/* футер и блок после хидера 
 	padding:8px;
 }
 
+#myModalBoxReg .modal-content{
+	height:300px;
+}
 
+#myModalBoxReg .modal-body{
+	height:170px;
+}
+
+#new_messege #uploadimageforum{
+	width:30%;
+}
 
  /* #compaunt div{
 	border:solid 20px white;

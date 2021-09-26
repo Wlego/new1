@@ -14,8 +14,16 @@
 				
 				<div class="col-xs-2 ava" align="center">
 					<div class="avatar col-xs-12">
-						<a class="thumbnail" type="button" onclick="uploadfunc();"><span class="glyphicon glyphicon-user" style="font-size:100px"></span></a>
-						<input id="uploadimage" type="file" style="display:none">
+						<a class="thumbnail" type="button" onclick="uploadfunc();">
+						<!-- <span class="glyphicon glyphicon-user" style="font-size:100px"></span> -->
+						<?php //$row=mysqli_fetch_assoc(mysqli_query($CONNECT, 'SELECT `nameAvatar` FROM `users` WHERE `inputEmail`="'.$_SESSION['inputEmail'].'" '));
+						//echo $_SESSION['nameAvatar']; 
+						if ($_SESSION['nameAvatar']=='')
+						echo '<span class="glyphicon glyphicon-user" style="font-size:100px"></span>';
+						else echo'<img class="glyphicon-user" src="auth/uploads/'.$_SESSION['nameAvatar'].'" width="100" height="100">';
+						?>
+						</a>
+						<input id="uploadimage" type="file" name="file" style="display:none">
 					</div>
 				</div>
 				
@@ -71,44 +79,31 @@
 					</div>
 				</div>	
 			
-			</form>	
-		
-			<br />			
-			
-			<div class="form-group">
-				<div class="col-xs-push-4 col-xs-6">
-				<button onclick="post_query('gform.php', 'update', 'lastName.firstName.fatherName.inputEmail.phoneNumber.postalAddress')" disabled="" type="button" class="btn btn-default reg" value="Регистрация">Сохранить</button>				
+				<div class="form-group">
+					<div class="col-xs-push-3 col-xs-6">
+					<button onclick="post_query('gform.php', 'update', 'lastName.firstName.fatherName.inputEmail.phoneNumber.postalAddress')" disabled="" type="button" class="btn btn-default reg" value="Регистрация">Сохранить</button>				
+					</div>
 				</div>
-			</div>	
-			
-			<form id="pass" class="form-horizontal pass">
-			
+				
 				<div class="form-group">
 					<label class="control-label col-xs-3" for="inputPassword">Смена пароля:</label>
 					<div class="col-xs-9">
 						<input type="password" class="form-control" id="inputPassword" placeholder="Введите новый пароль" autocomplete="off">
 					</div>
-				</div>
-				
+				</div>				
 				<div class="form-group confirmPassword">
 					<label class="control-label col-xs-3" for="confirmPassword">Подтвердите пароль:</label>
 					<div class="col-xs-9">
 						<input type="password" class="form-control" id="confirmPassword" placeholder="Введите пароль ещё раз" autocomplete="off">
 					</div>
+				</div>			
+				
+				<div class="form-group">
+					<div class="col-xs-push-3 col-xs-6">
+					<button onclick="post_query('gform.php', 'updatepas', 'inputPassword.confirmPassword')" type="button" class="btn btn-default passes" value="Регистрация">Сохранить новый пароль</button>				
+					</div>
 				</div>
-			
-			
-			</form>
-			
-			<br />
-			
-			
-			<div class="form-group">
-				<div class="col-xs-push-4 col-xs-6">
-				<button onclick="post_query('gform.php', 'updatepas', 'confirmPassword')" type="button" class="btn btn-default passes" value="Регистрация">Сохранить новый пароль</button>				
-				</div>
-			</div>
-		
+			</form>	
 		</div>
 		
 	</div>

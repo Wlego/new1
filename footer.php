@@ -38,14 +38,24 @@
 										<input type="text" id="Passwordr" class="form-control"name="Passwordr" placeholder="пароль"/>
 									</div>
 								</div>
-								</div>
+								<div class="col-md-12">
+									<div class="form-group ">
+										<label class="radio-inline">
+											<input id="choice" type="radio" name="choices"  > <h6> Я мебельщик </h6>
+										</label>
+										<label class="radio-inline">
+											<input id="choicesss" type="radio" name="choices"  > <h6> Я заказчик </h6>
+										</label>
+									</div>
+								</div>	
 							</div>
 						</div>
+					</div>
 					
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
 						<div class="form-group ">						
-						<button onclick="post_query('gform.php', 'reg' , 'Emailr.Passwordr')" type="button" class="btn btn-default" data-dismiss="modal">Зарегистрироваться</button>						
+						<button onclick="registration()" type="button" class="btn btn-default" data-dismiss="modal">Зарегистрироваться</button>						
 						</div>
 					</div>
 				</div>
@@ -117,10 +127,16 @@
 								<div class="col-md-12">
 									<div class="form-group ">
 										<label class="control-label">Email</label>				
-										<input type="text" id="mailc" class="form-control"name="mailc" placeholder="Email"/>											
-											
+										<input type="text" id="mailrec" class="form-control"name="mailrec" placeholder="Email"/>
 									</div>
-								</div>								 
+								</div>
+								<div class="col-md-12">
+									<div class="form-group ">
+										<label class="control-label">Новый пароль</label>				
+										<input type="text" id="passwordrec" class="form-control" name="passwordrec" placeholder="пароль"/>
+									</div>
+								</div>
+								<br>
 							</div>
 						</div>
 					</div>
@@ -128,7 +144,7 @@
 					<!-- Футер модального окна -->
 					<div class="modal-footer">
 						<div class="form-group ">						
-						<button onclick="post_query('gform.php', 'recovery' , 'mailc')" type="button" class="btn btn-default" data-dismiss="modal">отправить</button> <!--  data-dismiss="modal" -->						
+						<button onclick="post_query('gform.php', 'recovery' , 'mailrec.passwordrec')" type="button" class="btn btn-default" data-dismiss="modal">отправить</button> <!--  data-dismiss="modal" -->						
 						</div>
 					</div>
 				</div>
@@ -167,8 +183,13 @@
 						</div>
 					
 					<!-- Футер модального окна -->
+					
 					<div class="modal-footer">
 						<div class="form-group ">
+						<?php //if ($_SESSION['recoverys']==1)
+						//echo'<button onclick="post_query('."'gform.php'".', '."'updatepasrec'".', '."'cod'".')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>';
+						//else echo'<button onclick="post_query("gform.php", "confirm", "cod")" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>';
+						?>
 						<button onclick="post_query('gform.php', 'confirm', 'cod')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button>
 						</div>
 					</div>

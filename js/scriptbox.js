@@ -179,7 +179,7 @@ function post_query( url, name, data ) {
 		str += '&' + v + '=' + $('#' + v).val();
 	} );
 
-	//alert( str);
+	//alert(str);
 	$.ajax(
 
 	{
@@ -188,28 +188,45 @@ function post_query( url, name, data ) {
 		data: name + '_f=1' + str,
 		cache: false,		
 		success:function( result ) {
-			//alert( result);
+			//alert(result);
 			
 			var obj = result;
 			
 			if (obj.indexOf('#')!=-1) $(obj).modal('show');
 			else if (obj.indexOf('код введен неверно')!=-1) {alert( obj ); $('#myModalBoxCod').modal('show');}
 			else if (obj.indexOf('Данный E-mail незарегистрирован')!=-1){
-				$('#myModalBoxReg .col-md-12').eq(1).remove();
-				$('#myModalBoxReg .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Данный E-mail незарегистрирован</p></div></div>');}			
+				$('#myModalBoxEnter .col-md-12').eq(1).remove();
+				$('#myModalBoxEnter .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">'+obj+'</p></div></div>');}			
 			else if (obj.indexOf('Пароль был отправлен вам на почту')!=-1){
 				$('#myModalBoxReg .col-md-12').eq(1).remove();
-				$('#myModalBoxReg .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">Пароль был отправлен вам на почту</p></div></div>');}
+				$('#myModalBoxReg .col-md-12').after('<div class="col-md-12"><div class="form-group "><p class="h6 danger">'+obj+'</p></div></div>');}
 			else if (obj.indexOf('.php')!=-1) {
 				obj=obj.slice(0,-4);
-			//setTimeout(function(){window.location.href = obj},5);
-			window.location.href = obj;
+				//setTimeout(function(){window.location.href = obj},5);
+				window.location.href = obj;
 			}
 			//else if (obj.indexOf('empty')!=-1)
 			//	{$('#content').text('история пуста');}
 			//else if(obj.indexOf('end')!=-1)
 			//	{$('#content').append(obj);}
-			else alert( obj );
+			//else if(!obj) return;			
+			else if (obj.indexOf('reg')!=-1){				
+				$('#myModalBoxCod .modal-footer').remove();
+				$('#myModalBoxCod .modal-body').after('<div class="modal-footer"><div class="form-group "><button onclick="post_query(\'gform.php\', \'confirm\', \'cod\')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button></div></div>');
+				$('#myModalBoxCod').modal('show');			
+			}
+			else if (obj.indexOf('updatepasrec')!=-1){				
+				$('#myModalBoxCod .modal-footer').remove();
+				$('#myModalBoxCod .modal-body').after('<div class="modal-footer"><div class="form-group "><button onclick="post_query(\'gform.php\', \'updatepasrec\', \'cod\')" type="button" class="btn btn-default" data-dismiss="modal">Отправить</button></div></div>');
+				$('#myModalBoxCod').modal('show');			
+			}
+			else if (obj.indexOf('Ваш новый пароль сохранен.')!=-1){
+				alert('Ваш новый пароль сохранен.');
+				$('#myModalBoxEnter').modal('show');
+			}
+			else  alert( obj );
+			
+			
 	}
 	}
 
@@ -285,6 +302,12 @@ if ($('#lastName').val()!=""){$('div.form-group').eq(1).removeClass('has-error h
 	$('#myModalBoxRec').modal('show');//открыть нужное
 });
 
+/* $(".next").click( function (){	
+	$('.modal').modal('hide');//закрыть все окна
+	$('#myModalBoxRec').modal('show');//открыть нужное
+}); */
+
+
 
 //активация кнопки при нажатии на checkbox
 
@@ -293,14 +316,14 @@ $('#cheked').on('change', function(){
   else $('.reg').attr('disabled', true);
 });
 
-//Вызов загрузки аватара
+//Загрузка аватара
 
 function uploadfunc(){
-	$('#uploadimage').click();
+	
 	var files; // переменная. будет содержать данные файлов
 
-	// заполняем переменную данными, при изменении значения поля file 
-	$('input[type=file]').on('change', function(){
+	
+	$('input[type=file]').on('change', function(){ // заполняем переменную данными, при изменении значения поля file 
 		files = this.files;
 	
 
@@ -315,31 +338,46 @@ function uploadfunc(){
                 processData: false,
                 data: form_data,
                 type: 'post',
-                success: function(php_script_response){
-                    alert(php_script_response);
+                success: function(obj){
+					var result=obj;
+					//alert(result);
+					if (result.indexOf('uploadsucces')!=-1) //location.reload(); если получен ответ от сервера содержащий 'uploadsucces'
+					{var namefile=result.split(',')[1];	//берем имя файла из ответа от сервера
+					$('.glyphicon-user').replaceWith('<img class="glyphicon-user" src="auth/uploads/'+namefile+'" width="100" height="100">');}// устанавливаем картинку из папки на сервере
+					//$('.glyphicon-user').remove();
+                    else {alert(result);}
+					
                 }
      });
 	 });
 }
-/* $(document).ready(function() { 
-            var windowWidth = $(window).width();
-            if(windowWidth >= 1250)$("#fios").addClass("col-xs-9");
-				else $("#fios").removeClass("col-xs-9");
-			if(windowWidth < 1250)$("#fios").addClass("col-xs-12");
-				else $("#fios").removeClass("col-xs-12");
-            if(windowWidth > 1830)$("#fios").addClass("col-xs-push-1");
-				else $("#fios").removeClass("col-xs-push-1");
-				
-            $(window).resize(function(){
-                var windowWidth = $(window).width(); 
-                if(windowWidth >= 1250)$("#fios").addClass("col-xs-9");
-					else $("#fios").removeClass("col-xs-9");
-				if(windowWidth < 1250)$("#fios").addClass("col-xs-12");
-					else $("#fios").removeClass("col-xs-12");
-				if(windowWidth > 1830)$("#fios").addClass("col-xs-push-1");
-					else $("#fios").removeClass("col-xs-push-1");
-             }); 
-        }); */
+
+function registration(){
+	if ($('#choice').is(':checked')===true) $('#choice').val(1); 
+	else $('#choice').val(0);
+	if ($('#choicesss').is(':checked')===true) $('#choicesss').val(1); 
+	else $('#choicesss').val(0);	
+	post_query( 'gform.php', 'reg' , 'Emailr.Passwordr.choice.choicesss');
+}
+
+$('.block').click( function(){
+	alert ('привет');
+	var theme,message;
+	theme=$(this).find(".a").html();	
+	message=$(this).find("p").html();	
+	$.ajax({
+		url : '/new1/all/forum1.php',
+		type: 'POST',
+		dataType:'text',
+		data:{theme:theme,message:message},		
+		//cache: false,		
+		success:function( result ) {
+			window.location.href = 'forum_current';
+			//$('.forum').before(result);
+			//$('.forum').remove();
+		}
+		});
+});
 
 //$("#exit").click( function(){post_query( 'gform.php', 'exits', 'data');});
 

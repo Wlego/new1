@@ -4,7 +4,8 @@
 	
 //header
 
-require_once "header.php"; 
+require_once "header.php";
+require_once "connectBDLC.php"; 
 	//var_dump($_SERVER);
 
 
@@ -20,7 +21,7 @@ else {
 
 
 session_start();
-//var_dump($_SESSION['id']);
+//var_dump($_SESSION['inputEmail']);
 
 
 if ( file_exists('all/'.$page.'.php') ) include 'all/'.$page.'.php';
@@ -46,4 +47,8 @@ else not_found();
  function not_found() {
 	echo('Страница 404');
 }	
+
+function go( $url ) {
+	exit($url);
+}
 ?>

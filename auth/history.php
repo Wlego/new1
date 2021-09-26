@@ -12,26 +12,26 @@ session_start();
 
 <?php
 $_SESSION['loader']=0;
-
-function loadpage(){
-//$CONNECT = mysqli_connect('localhost', 'f0541819_new1', 'vlqrH8G3', 'f0541819_new1'); 
-$CONNECT = mysqli_connect('localhost', 'root', '', 'new1');
-$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
-
-if(!mysqli_num_rows($querys)){
-	if($_SESSION['loader']==0)exit('empy');
-	else exit('end');
-}
-
-$_SESSION['loader']+=2;
-while($rows=mysqli_fetch_assoc($querys)){
-	echo'<p>'.$rows['text'].'</p>';
-}
-}
-if ($_POST['admin']=='привет'){
-echo $_POST['admin'];
-loadpage();
-}
+//
+//function loadpage(){
+////$CONNECT = mysqli_connect('localhost', 'f0541819_new1', 'vlqrH8G3', 'f0541819_new1'); 
+//$CONNECT = mysqli_connect('localhost', 'root', '', 'new1');
+//$querys=mysqli_query($CONNECT, "SELECT text FROM histori LIMIT ".$_SESSION['loader'].",2 ");
+//
+//if(!mysqli_num_rows($querys)){
+//	if($_SESSION['loader']==0)exit('empy');
+//	else exit('end');
+//}
+//
+//$_SESSION['loader']+=2;
+//while($rows=mysqli_fetch_assoc($querys)){
+//	echo'<p>'.$rows['text'].'</p>';
+//}
+//}
+//if ($_POST['admin']=='привет'){
+//echo $_POST['admin'];
+//loadpage();
+//}
 ?> 
 
 </div>
